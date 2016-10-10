@@ -7,6 +7,7 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilder;
@@ -32,7 +33,12 @@ public class LabGetHTTPS {
 	// HTTP GET request
 	private void sendGet() throws Exception {
 
-		String url = "http://129.32.92.49:8080/xml_lab/getgrade?xml=<tuid>123456</tuid>";
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println("Enter your tuid: ");		
+		int tuid = scanner.nextInt();
+		
+		String url = "http://129.32.92.49:8080/xml_lab/getgrade?xml=<tuid>"+tuid+"</tuid>";
 
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -67,9 +73,9 @@ public class LabGetHTTPS {
 		DocumentBuilder builder= factory.newDocumentBuilder();
 		Document doc = builder.parse( new InputSource(new StringReader(input)));
 		doc.getDocumentElement().normalize();
-		String tuid =  doc.getElementsByTagName("content").item(0).getTextContent();
+		String grade =  doc.getElementsByTagName("content").item(0).getTextContent();
 		
-		System.out.println("Tuid is: "+tuid);
+		System.out.println("Grade is: "+grade);
 
 	}
 	
