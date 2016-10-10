@@ -86,7 +86,7 @@ public class LabGetHTTPS {
 	// HTTP POST request
 	private void sendPost() throws Exception {
 
-		String url = "http://129.32.92.49:8080/xml_lab/getgrade?xml=<tuid>123456</tuid>";
+		String url = "https://selfsolve.apple.com/wcResults.do";
 		URL obj = new URL(url);
 		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
